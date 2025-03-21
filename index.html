@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bimba Bit - Calculate Text Size</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="images/Icon.png" type="image/png">
+</head>
+<body class="dark-mode">
+    <div class="particle-container">
+        <div class="particles"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1><span class="highlight">Bimba</span>Bit <i class="fas fa-text-height bounce-animation"></i></h1>
+            <div class="header-controls">
+                <button id="theme-toggle" class="control-button" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="tooltip">Toggle Theme</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="calculator-section">
+            <h2 class="section-title">Text Size Calculator <i class="fas fa-calculator pulse-animation"></i></h2>
+            <p>Enter your text below to calculate its size in real-time</p>
+            
+            <div class="input-container">
+                <div class="file-controls">
+                    <label for="file-upload" class="control-button">
+                        <i class="fas fa-upload"></i>
+                        <span>Upload Text</span>
+                    </label>
+                    <input type="file" id="file-upload" accept=".txt">
+                    
+                    <button id="download-text" class="control-button">
+                        <i class="fas fa-download"></i>
+                        <span>Download Text</span>
+                    </button>
+                </div>
+                <textarea id="text-input" placeholder="Type or paste your text here..."></textarea>
+                <div class="text-controls">
+                    <button id="convert-binary" class="control-button">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Convert to Binary</span>
+                    </button>
+                    <button id="download-binary" class="control-button">
+                        <i class="fas fa-file-download"></i>
+                        <span>Download Binary</span>
+                    </button>
+                    <button id="clear-text" class="control-button">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Clear</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="results-container">
+                <div class="result-card" id="size-card">
+                    <div class="card-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <h3>Text Size</h3>
+                    <div class="size-values-container">
+                        <div class="size-value-item">
+                            <span class="size-label">Bytes:</span>
+                            <span id="byte-size" class="size-value">0 bytes</span>
+                        </div>
+                        <div class="size-value-item">
+                            <span class="size-label">Kilobytes:</span>
+                            <span id="kilobyte-size" class="size-value">0 KB</span>
+                        </div>
+                        <div class="size-value-item">
+                            <span class="size-label">Megabytes:</span>
+                            <span id="megabyte-size" class="size-value">0 MB</span>
+                        </div>
+                        <div class="size-value-item">
+                            <span class="size-label">Characters:</span>
+                            <span id="character-count" class="size-value">0 characters</span>
+                        </div>
+                        <div class="size-value-item">
+                            <span class="size-label">Words:</span>
+                            <span id="word-count" class="size-value">0 words</span>
+                        </div>
+                    </div>
+                    <div class="size-bar-container">
+                        <div class="size-bar" id="size-bar"></div>
+                        <p class="size-bar-label">Size relative to 10KB</p>
+                    </div>
+                    <div class="size-facts">
+                        <p><i class="fas fa-info-circle"></i> <span id="size-fact">Did you know? Text is one of the most efficient data formats.</span></p>
+                    </div>
+                </div>
+                
+                <div class="result-card" id="comparison-card">
+                    <div class="card-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Fun Comparisons</h3>
+                    <p id="comparison-1" class="comparison-item">
+                        <i class="fab fa-twitter"></i>
+                        <span>Equivalent to 0 tweets</span>
+                    </p>
+                    <p id="comparison-2" class="comparison-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Would cost $0 in the 2000s</span>
+                    </p>
+                    <p id="comparison-3" class="comparison-item">
+                        <i class="fas fa-save"></i>
+                        <span>0 floppy disks needed</span>
+                    </p>
+                    <p id="comparison-4" class="comparison-item">
+                        <i class="fas fa-sms"></i>
+                        <span>0 SMS messages</span>
+                    </p>
+                    <p id="comparison-5" class="comparison-item">
+                        <i class="fas fa-book"></i>
+                        <span>0% of a novel</span>
+                    </p>
+                    <p id="comparison-6" class="comparison-item">
+                        <i class="fas fa-music"></i>
+                        <span>0 seconds of MP3 audio</span>
+                    </p>
+                    <button id="show-more-comparisons" class="control-button">
+                        <i class="fas fa-plus"></i>
+                        <span>Show More</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="binary-section" id="binary-section">
+            <h2 class="section-title">Binary Conversion <i class="fas fa-microchip spin-animation"></i></h2>
+            <div class="binary-container">
+                <pre id="binary-output"></pre>
+            </div>
+        </section>
+        
+        <section class="info-section">
+            <h2 class="section-title">About Text Sizes <i class="fas fa-info-circle float-animation"></i></h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>What is a Byte?</h3>
+                    <p>A byte is the basic unit of digital information storage. One byte typically represents one character of text.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Storage in the 2000s</h3>
+                    <p>In the early 2000s, storage was much more expensive. A megabyte of storage could cost around $1, compared to fractions of a cent today.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Text vs. Other Media</h3>
+                    <p>Text is very efficient! A full novel might be just 1MB, while a single high-resolution photo could be 5MB or more.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Binary</h3>
+                    <p>In computers, all text is ultimately stored as binary (0s and 1s). Each character is typically represented by 8 bits (1 byte).</p>
+                </div>
+            </div>
+            <div class="easter-egg-hint">
+                <p><i class="fas fa-egg"></i> Try typing these words for fun surprises: binary, floppy, matrix, konami, hello world, 42, pizza, rickroll</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bimba Bit. All rights reserved.</p>
+            <div class="footer-icons">
+                <i class="fas fa-heart pulse-animation"></i>
+                <i class="fas fa-code bounce-animation"></i>
+                <i class="fas fa-coffee spin-animation"></i>
+            </div>
+            <div>
+                <p>_</p>
+                <p>V1</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
